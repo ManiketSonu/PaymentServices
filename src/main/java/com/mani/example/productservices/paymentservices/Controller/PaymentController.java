@@ -5,6 +5,7 @@ import com.mani.example.productservices.paymentservices.DTO.PaymentRequestDto;
 import com.mani.example.productservices.paymentservices.DTO.PaymentResponseDTO;
 import com.mani.example.productservices.paymentservices.Model.PaymentResponse;
 import com.mani.example.productservices.paymentservices.Service.iPaymentServices;
+import com.razorpay.RazorpayException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/customer")
-    public PaymentResponseDTO makePayment(@RequestBody PaymentRequestDto paymentRequestDto)
+    public PaymentResponseDTO makePayment(@RequestBody PaymentRequestDto paymentRequestDto) throws RazorpayException
     {
         //s.1 validate the input
         if(!isValidRequest(paymentRequestDto))
